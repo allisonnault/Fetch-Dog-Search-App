@@ -10,8 +10,8 @@ const Nav = () => {
       <div className="col">
         <ul className="nav justify-content-end">
           <li className="nav-item p-3">
-            <NavLink to="/dogs/breeds" className="nav-link">
-              Dog Breeds
+            <NavLink to="/search" className="nav-link">
+              Search
             </NavLink>
           </li>
           <li className="nav-item p-3">

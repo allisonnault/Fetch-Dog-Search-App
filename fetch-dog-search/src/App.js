@@ -9,7 +9,7 @@ function App() {
 <BrowserRouter>
     <Nav />
     <Routes>
-      <Route exact path='/dogs/breeds' Component={Search}/>
+      <Route exact path='/search' Component={Search}/>
       <Route exact path='/' Component={Login}/>
     </Routes>
 </BrowserRouter>
