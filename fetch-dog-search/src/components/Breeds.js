@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+
 
 const apiURL = "https://frontend-take-home-service.fetch.com";
 
 const Breeds = () => {
+    const [breeds, setBreeds] = useState([]);
 
-    const findBreeds = async (e) => {
-        e.preventDefault();
+    useEffect(() => {
+        fetchBreeds();
+    }, [])
 
+    const fetchBreeds = async (e) => {
         const api = axios.create({
             withCredentials: true
         });
@@ -16,16 +20,20 @@ const Breeds = () => {
             headers: {
                 "Content-Type": "application/json"
             },
-        });
-       console.log(response);
+        })
+        const data = await response.data;
+        setBreeds(data);
     }
 
-    return (
-        <div>
-           
 
-            <button onClick={findBreeds} className='btn btn-primary'>Get Breeds</button>
-          
+
+    return (
+        <div className='dropdown'>
+          <ul>
+            {breeds.map((breed, index) => (
+                <li key={index}>{breed}</li>
+            ))}
+          </ul>
         </div>
     )
 }
