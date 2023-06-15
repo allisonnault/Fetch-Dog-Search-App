@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const apiURL = "https://frontend-take-home-service.fetch.com";
 
-const Breeds = () => {
+const Search = () => {
     const [breeds, setBreeds] = useState([]);
 
     useEffect(() => {
@@ -26,16 +26,19 @@ const Breeds = () => {
     }
 
 
-
     return (
-        <div className='dropdown'>
-          <ul>
-            {breeds.map((breed, index) => (
-                <li key={index}>{breed}</li>
-            ))}
-          </ul>
+      <div>
+        <div className='input-group mb-3'>
+            <label className='input-group-text' for='inputGroupSelect01'>Breeds</label>
+            <select className='form-select' id='inputGroupSelect01'>
+                <option selected>Choose...</option>
+                {breeds.map((breed, i) => (
+                    <option key={i}>{breed}</option>
+                ))}
+            </select>
         </div>
+      </div>
     )
 }
 
-export default Breeds
+export default Search
