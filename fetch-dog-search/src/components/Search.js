@@ -96,7 +96,7 @@ const Search = () => {
           Search Dogs
         </button>
       </form>
-      <div>
+      <div className="container d-flex justify-content-around align-content-start flex-wrap">
       {results.map((dog, i)=> (
             <Card 
                 key={i}
