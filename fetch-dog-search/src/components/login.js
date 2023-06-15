@@ -22,7 +22,7 @@ const Login = (props) => {
                 "Content-Type": "application/json"
             },
         });
-       console.log(response);
+       window.location.assign("/search");
     };
 
     return (

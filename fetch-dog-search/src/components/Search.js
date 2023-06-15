@@ -14,10 +14,16 @@ const Search = () => {
   const [zip, setZip] = useState("");
   const [searchIds, setSearchIds] = useState([]);
   const [results, setResults] = useState([]);
+  const [next, setNext] = useState("");
+  const [prev, setPrev] = useState("");
 
   useEffect(() => {
     fetchBreeds();
   }, []);
+
+  useEffect(() => {
+    fetchResults();
+  }, [searchIds]);
 
   const fetchBreeds = async (e) => {
     const response = await api.get(apiURL + "/dogs/breeds", {
@@ -38,15 +44,15 @@ const Search = () => {
       },
     });
     const data = response.data;
+    setNext(data.next)
     setSearchIds(data.resultIds);
-    console.log(searchIds);
+    console.log('fetchDogs', searchIds);
   };
 
   const handleSearch = (e) => {
     e.preventDefault();
-    console.log(breed, zip);
-    fetchDogs(breed, zip);
-    fetchResults();
+    fetchDogs()
+    // fetchResults();
   };
 
   const fetchResults = async (e) => {
@@ -58,8 +64,35 @@ const Search = () => {
             },
         });
         setResults(response.data);
-        console.log(results);
    }
+
+  const getNextPage = async (e) => {
+    const response = await api.get(apiURL + next, {
+      withCredentials: true,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = response.data;
+    setNext(data.next);
+    setPrev(data.prev);
+    setSearchIds(data.resultIds);
+    fetchResults();
+  };
+
+  const getPrevPage = async (e) => {
+    const response = await api.get(apiURL + prev, {
+      withCredentials: true,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = response.data;
+    setNext(data.next);
+    setPrev(data.prev);
+    setSearchIds(data.resultIds);
+    fetchResults();
+  };
 
   return (
     <div>
@@ -96,7 +129,7 @@ const Search = () => {
           Search Dogs
         </button>
       </form>
-      <div className="container d-flex justify-content-around align-content-start flex-wrap">
+      <div className="d-flex justify-content-around align-content-start flex-wrap">
       {results.map((dog, i)=> (
             <Card 
                 key={i}
@@ -109,6 +142,8 @@ const Search = () => {
                 />
         ))}
       </div>
+      <button className="btn btn-secondary" type='click' onClick={getPrevPage}>Previous Page</button>
+      <button className="btn btn-secondary" type='click' onClick={getNextPage}>Next Page</button>
     </div>
   );
 };
