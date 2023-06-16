@@ -17,8 +17,7 @@ const Search = () => {
   const [next, setNext] = useState("");
   const [prev, setPrev] = useState("");
   const [favorites, setFavorites] = useState(new Set());
-  const [favArr, setFavArr] = useState([]);
-
+  const [match, setMatch] = useState("");
  
   useEffect(() => {
     fetchBreeds();
@@ -58,7 +57,6 @@ const Search = () => {
   const handleSearch = (e) => {
     e.preventDefault();
     fetchDogs()
-    // fetchResults();
   };
 
   const fetchResults = async (e) => {
@@ -102,15 +100,26 @@ const Search = () => {
 
 function saveFavorite(id) {
   setFavorites(favorites.add(id));
-  console.log(favorites);
-  setFavArr(Array.from(favorites));
-    console.log(favArr);
 };
+
+const fetchMatch = async (e) => {
+  const body = [...favorites];
+  console.log(body);
+  const response = await api.post(apiURL+'/dogs/match', body, {
+    withCredentials: true,
+    headers: {
+        "Content-Type": "application/json"
+    },
+  })
+  setMatch(response.data.match);
+  console.log(match);
+  
+}
 
 
   return (
     <div>
-      <form onSubmit={handleSearch}>
+      <form onSubmit={handleSearch} className="m-3">
         <div className="input-group mb-3">
           <label className="input-group-text" for="inputGroupSelect01">
             Breeds
@@ -143,6 +152,9 @@ function saveFavorite(id) {
           Search Dogs
         </button>
       </form>
+      <div>
+      <button className="btn btn-secondary m-3" type='click' onClick={(e) => fetchMatch()}>Find Match</button>
+      </div>
       <div className="d-flex justify-content-around align-content-start flex-wrap">
       {results.map((dog, i)=> (
             <Card 
@@ -157,8 +169,10 @@ function saveFavorite(id) {
                 />
         ))}
       </div>
-      <button className="btn btn-secondary" type='click' onClick={getPrevPage}>Previous Page</button>
-      <button className="btn btn-secondary" type='click' onClick={getNextPage}>Next Page</button>
+      <div className="text-center">
+      <button className="btn btn-secondary m-3" type='click' onClick={getPrevPage}>Previous Page</button>
+      <button className="btn btn-secondary m-3" type='click' onClick={getNextPage}>Next Page</button>
+      </div>
     </div>
   );
 };
