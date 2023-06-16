@@ -15,11 +15,6 @@ const Nav = () => {
             </NavLink>
           </li>
           <li className="nav-item p-3">
-            <NavLink to="/favorites" className="nav-link">
-              Favorites
-            </NavLink>
-          </li>
-          <li className="nav-item p-3">
             <NavLink to="/" className="nav-link">
               Login
             </NavLink>

@@ -27,9 +27,6 @@ const Search = () => {
     fetchResults();
   }, [searchIds]);
 
-  // useEffect(() => {
-    
-  // }, {favorites})
 
   const fetchBreeds = async (e) => {
     const response = await api.get(apiURL + "/dogs/breeds", {
@@ -100,20 +97,21 @@ const Search = () => {
 
 function saveFavorite(id) {
   setFavorites(favorites.add(id));
+  console.log(favorites);
 };
 
 const fetchMatch = async (e) => {
+
   const body = [...favorites];
-  console.log(body);
   const response = await api.post(apiURL+'/dogs/match', body, {
     withCredentials: true,
     headers: {
         "Content-Type": "application/json"
     },
-  })
-  setMatch(response.data.match);
-  console.log(match);
+  });
+  const data = await response.data.match
   
+  window.location.assign(`/match/${data}`);
 }
 
 

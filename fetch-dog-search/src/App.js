@@ -2,8 +2,8 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Nav from './components/Nav';
 import Search from './components/Search';
-import Favorites from './components/Favorites';
 import Login from './components/Login';
+import Match from './components/Match';
 import './App.css';
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
     <Nav />
     <Routes>
       <Route exact path='/search' Component={Search}/>
-      <Route exact path='/favorites' Component={Favorites} />
+      <Route exact path='/match/:id' Component={Match} />
       <Route exact path='/' Component={Login}/>
     </Routes>
 </BrowserRouter>
