@@ -17,7 +17,7 @@ const Search = () => {
   const [next, setNext] = useState("");
   const [prev, setPrev] = useState("");
   const [favorites, setFavorites] = useState(new Set());
-  const [match, setMatch] = useState("");
+
  
   useEffect(() => {
     fetchBreeds();

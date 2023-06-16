@@ -26,19 +26,22 @@ const Match = () => {
                 "Content-Type": "application/json"
             },
         });
-        setResult(response.data);
+        const data = await response.data;
+        setResult(data);
         console.log(result);
    }
 
    return (
     <div>
-        <Card
+        {result.length ? <Card
             age={result[0].age} 
             breed={result[0].breed} 
             id={result[0].id}
             img={result[0].img}
             name={result[0].name}
-            zip={result[0].zip_code} />
+            zip={result[0].zip_code} /> : 
+            <div>No Match</div>}
+       
     </div>
    )
 
