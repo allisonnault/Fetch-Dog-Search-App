@@ -16,7 +16,10 @@ const Search = () => {
   const [results, setResults] = useState([]);
   const [next, setNext] = useState("");
   const [prev, setPrev] = useState("");
+  const [favorites, setFavorites] = useState(new Set());
+  const [favArr, setFavArr] = useState([]);
 
+ 
   useEffect(() => {
     fetchBreeds();
   }, []);
@@ -24,6 +27,10 @@ const Search = () => {
   useEffect(() => {
     fetchResults();
   }, [searchIds]);
+
+  // useEffect(() => {
+    
+  // }, {favorites})
 
   const fetchBreeds = async (e) => {
     const response = await api.get(apiURL + "/dogs/breeds", {
@@ -46,7 +53,6 @@ const Search = () => {
     const data = response.data;
     setNext(data.next)
     setSearchIds(data.resultIds);
-    console.log('fetchDogs', searchIds);
   };
 
   const handleSearch = (e) => {
@@ -94,6 +100,14 @@ const Search = () => {
     fetchResults();
   };
 
+function saveFavorite(id) {
+  setFavorites(favorites.add(id));
+  console.log(favorites);
+  setFavArr(Array.from(favorites));
+    console.log(favArr);
+};
+
+
   return (
     <div>
       <form onSubmit={handleSearch}>
@@ -139,6 +153,7 @@ const Search = () => {
                 img={dog.img}
                 name={dog.name}
                 zip={dog.zip_code}
+                save={saveFavorite}
                 />
         ))}
       </div>
