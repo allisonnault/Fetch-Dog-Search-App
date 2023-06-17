@@ -14,7 +14,6 @@ const Match = () => {
     const [result, setResult] = useState([]);
     
     useEffect(() => {
-        console.log(id);
         fetchDog();
     }, []);
 
@@ -28,11 +27,12 @@ const Match = () => {
         });
         const data = await response.data;
         setResult(data);
-        console.log(result);
    }
 
    return (
     <div>
+    <div className="container justify-content-center">
+        <h3>Your Match:</h3>
         {result.length ? <Card
             age={result[0].age} 
             breed={result[0].breed} 
@@ -41,7 +41,7 @@ const Match = () => {
             name={result[0].name}
             zip={result[0].zip_code} /> : 
             <div>No Match</div>}
-       
+       </div>
     </div>
    )
 

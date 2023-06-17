@@ -6,7 +6,6 @@ import { useLocation } from "react-router-dom";
 const Card = (props) => {
     const [location, setLocation] = useState(useLocation());
     const isSearch = location.pathname === "/search";
-    console.log(isSearch);
 
     return (
         <div className="card dogCard m-3 shadow">

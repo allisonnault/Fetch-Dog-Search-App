@@ -11,7 +11,8 @@ const api = axios.create({
 const Search = () => {
   const [breedList, setBreedList] = useState([]);
   const [breed, setBreed] = useState("");
-  const [zip, setZip] = useState("");
+  const [minAge, setMinAge] = useState("");
+  const [maxAge, setMaxAge] = useState("");
   const [searchIds, setSearchIds] = useState([]);
   const [results, setResults] = useState([]);
   const [next, setNext] = useState("");
@@ -40,7 +41,7 @@ const Search = () => {
   };
 
   const fetchDogs = async (e) => {
-    const response = await api.get(apiURL + `/dogs/search/?breeds=${breed}`, {
+    const response = await api.get(apiURL + `/dogs/search/?breeds=${breed}&ageMin=${minAge}&ageMax=${maxAge}`, {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
@@ -97,7 +98,6 @@ const Search = () => {
 
 function saveFavorite(id) {
   setFavorites(favorites.add(id));
-  console.log(favorites);
 };
 
 const fetchMatch = async (e) => {
@@ -135,14 +135,26 @@ const fetchMatch = async (e) => {
           </select>
         </div>
         <div className="input-group mb-3">
+          <lable className="input-group-text" for="inputGroup01">
+            Min Age
+          </lable>
+          <input
+            id="inputGroup01"
+            className="form-control"
+            value={minAge}
+            onChange={(e) => setMinAge(e.target.value)}
+            type="text"
+          />
+        </div>
+        <div className="input-group mb-3">
           <lable className="input-group-text" for="inputGroup02">
-            Zip Code
+            Max Age
           </lable>
           <input
             id="inputGroup02"
             className="form-control"
-            value={zip}
-            onChange={(e) => setZip(e.target.value)}
+            value={maxAge}
+            onChange={(e) => setMaxAge(e.target.value)}
             type="text"
           />
         </div>
