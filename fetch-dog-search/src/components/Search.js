@@ -36,9 +36,7 @@ const Search = () => {
       },
     })
     .then(function (response) {
-      console.log(response);
-      const data = response.data;
-      setBreedList(data);
+      setBreedList(response.data);
     })
     // if login times-out, user will be redirected to login page
     .catch(function (error) {
@@ -138,7 +136,7 @@ const Search = () => {
             className="form-select"
             id="inputGroupSelect01"
           >
-            <option selected>Choose...</option>
+            <option selected></option>
             {breedList.map((breed, i) => (
               <option key={i}>{breed}</option>
             ))}
@@ -202,10 +200,11 @@ const Search = () => {
             name={dog.name}
             zip={dog.zip_code}
             save={saveFavorite}
+            favorites={favorites}
           />
         ))}
       </div>
-      {searchIds == '' ? <h3 className="text-center">Search to see results</h3> : 
+      {searchIds == '' ? <h4 className="text-center">Search to see results</h4> : 
       <div className="text-center">
         <button
           className="btn btn-secondary m-3"

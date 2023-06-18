@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 
@@ -6,6 +6,12 @@ import { useLocation } from "react-router-dom";
 const Card = (props) => {
     const [location, setLocation] = useState(useLocation());
     const isSearch = location.pathname === "/search";
+
+    const handleClick = (e) => {
+        e.preventDefault();
+        props.save(e.target.id);
+        document.getElementById(e.target.id).disabled = true;
+    }
 
     return (
         <div className="card dogCard m-3 shadow">
@@ -19,7 +25,7 @@ const Card = (props) => {
             <div className="text-center">
             {isSearch ? <button 
                 id={props.id}
-                onClick={(e) => props.save(e.target.id)}
+                onClick={handleClick}
                 className="btn btn-primary mb-3"
                 >add to favorites</button> : <></>}
             </div>
