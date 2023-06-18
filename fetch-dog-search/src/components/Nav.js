@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 const Nav = () => {
   return (
     <header className="header row align-items-center">
-      <div className='col-5'>
+      <div className="col-5">
         <h1>Fetch Dog Search</h1>
       </div>
       <div className="col">
@@ -15,13 +15,13 @@ const Nav = () => {
             </NavLink>
           </li>
           <li className="nav-item p-3">
-            <NavLink to="/" className="nav-link">
-              Login
+            <NavLink to="/logout" className="nav-link">
+              Logout
             </NavLink>
           </li>
           <li className="nav-item p-3">
-            <NavLink to="/auth/logout" className="nav-link">
-              Logout
+            <NavLink to="/" className="nav-link">
+              Login
             </NavLink>
           </li>
         </ul>

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Card from "./Card";
 
-
 const apiURL = "https://frontend-take-home-service.fetch.com";
 const api = axios.create({
   withCredentials: true,
@@ -18,8 +17,8 @@ const Search = () => {
   const [next, setNext] = useState("");
   const [prev, setPrev] = useState("");
   const [favorites, setFavorites] = useState(new Set());
+  const options = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 
- 
   useEffect(() => {
     fetchBreeds();
   }, []);
@@ -27,7 +26,6 @@ const Search = () => {
   useEffect(() => {
     fetchResults();
   }, [searchIds]);
-
 
   const fetchBreeds = async (e) => {
     const response = await api.get(apiURL + "/dogs/breeds", {
@@ -41,32 +39,35 @@ const Search = () => {
   };
 
   const fetchDogs = async (e) => {
-    const response = await api.get(apiURL + `/dogs/search/?breeds=${breed}&ageMin=${minAge}&ageMax=${maxAge}`, {
-      withCredentials: true,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await api.get(
+      apiURL +
+        `/dogs/search/?breeds=${breed}&ageMin=${minAge}&ageMax=${maxAge}`,
+      {
+        withCredentials: true,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     const data = response.data;
-    setNext(data.next)
+    setNext(data.next);
     setSearchIds(data.resultIds);
   };
 
   const handleSearch = (e) => {
     e.preventDefault();
-    fetchDogs()
+    fetchDogs();
   };
 
   const fetchResults = async (e) => {
-    
-        const response = await api.post(apiURL+'/dogs', searchIds, {
-            withCredentials: true,
-            headers: {
-                "Content-Type": "application/json"
-            },
-        });
-        setResults(response.data);
-   }
+    const response = await api.post(apiURL + "/dogs", searchIds, {
+      withCredentials: true,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    setResults(response.data);
+  };
 
   const getNextPage = async (e) => {
     const response = await api.get(apiURL + next, {
@@ -96,24 +97,22 @@ const Search = () => {
     fetchResults();
   };
 
-function saveFavorite(id) {
-  setFavorites(favorites.add(id));
-};
+  function saveFavorite(id) {
+    setFavorites(favorites.add(id));
+  }
 
-const fetchMatch = async (e) => {
+  const fetchMatch = async (e) => {
+    const body = [...favorites];
+    const response = await api.post(apiURL + "/dogs/match", body, {
+      withCredentials: true,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.data.match;
 
-  const body = [...favorites];
-  const response = await api.post(apiURL+'/dogs/match', body, {
-    withCredentials: true,
-    headers: {
-        "Content-Type": "application/json"
-    },
-  });
-  const data = await response.data.match
-  
-  window.location.assign(`/match/${data}`);
-}
-
+    window.location.assign(`/match/${data}`);
+  };
 
   return (
     <div>
@@ -134,54 +133,82 @@ const fetchMatch = async (e) => {
             ))}
           </select>
         </div>
-        <div className="input-group mb-3">
-          <lable className="input-group-text" for="inputGroup01">
+        <div className="input-group mb-3 col-3">
+          <lable className="input-group-text" for="inputGroupSelect02">
             Min Age
           </lable>
-          <input
-            id="inputGroup01"
-            className="form-control"
+          <select
+            id="inputGroupSelect02"
+            className="form-select"
             value={minAge}
             onChange={(e) => setMinAge(e.target.value)}
-            type="text"
-          />
+          >
+          <option selected>Choose...
+          </option>
+          {options.map((option, i) => (
+            <option key={i}>{option}</option>
+          ))}
+          </select>
         </div>
-        <div className="input-group mb-3">
-          <lable className="input-group-text" for="inputGroup02">
+        <div className="input-group mb-3 col-3">
+          <lable className="input-group-text" for="inputGroupSelect03">
             Max Age
           </lable>
-          <input
-            id="inputGroup02"
-            className="form-control"
+          <select
+            id="inputGroupSelect03"
+            className="form-select"
             value={maxAge}
             onChange={(e) => setMaxAge(e.target.value)}
-            type="text"
-          />
+          >
+          <option selected>Choose...
+          </option>
+          {options.map((option, i) => (
+            <option key={i}>{option}</option>
+          ))}
+          </select>
         </div>
         <button className="btn btn-primary" type="submit">
           Search Dogs
         </button>
       </form>
       <div>
-      <button className="btn btn-secondary m-3" type='click' onClick={(e) => fetchMatch()}>Find Match</button>
+        <button
+          className="btn btn-secondary m-3"
+          type="click"
+          onClick={(e) => fetchMatch()}
+        >
+          Find Match
+        </button>
       </div>
       <div className="d-flex justify-content-around align-content-start flex-wrap">
-      {results.map((dog, i)=> (
-            <Card 
-                key={i}
-                age={dog.age} 
-                breed={dog.breed} 
-                id={dog.id}
-                img={dog.img}
-                name={dog.name}
-                zip={dog.zip_code}
-                save={saveFavorite}
-                />
+        {results.map((dog, i) => (
+          <Card
+            key={i}
+            age={dog.age}
+            breed={dog.breed}
+            id={dog.id}
+            img={dog.img}
+            name={dog.name}
+            zip={dog.zip_code}
+            save={saveFavorite}
+          />
         ))}
       </div>
       <div className="text-center">
-      <button className="btn btn-secondary m-3" type='click' onClick={getPrevPage}>Previous Page</button>
-      <button className="btn btn-secondary m-3" type='click' onClick={getNextPage}>Next Page</button>
+        <button
+          className="btn btn-secondary m-3"
+          type="click"
+          onClick={getPrevPage}
+        >
+          Previous Page
+        </button>
+        <button
+          className="btn btn-secondary m-3"
+          type="click"
+          onClick={getNextPage}
+        >
+          Next Page
+        </button>
       </div>
     </div>
   );

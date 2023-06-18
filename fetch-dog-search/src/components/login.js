@@ -22,16 +22,19 @@ const Login = (props) => {
                 "Content-Type": "application/json"
             },
         });
+        console.log(response);
        window.location.assign("/search");
     };
 
     return (
-        <div className='col-4'>
+        <div className='container col-4 card shadow'>
+        <div className='p-3'>
+            <h3 className='text-center mb-3'>Login</h3>
            <form onSubmit={handleSubmit}>
             <div className='mb-3'>
             <label className='form-label'>Name: </label>
             <input 
-                className='form-control'
+                className='form-control mb-3'
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 type='text'
@@ -39,7 +42,7 @@ const Login = (props) => {
                 />
             <label className='form-label'>Email: </label>
             <input 
-                className='form-control'
+                className='form-control mb-3'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 type='email'
@@ -48,6 +51,7 @@ const Login = (props) => {
             <button className='btn btn-primary login-btn' type='submit'>Login</button>
             </div>
            </form>
+        </div>
         </div>
     );
 };
