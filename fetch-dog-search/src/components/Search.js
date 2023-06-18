@@ -27,15 +27,26 @@ const Search = () => {
     fetchResults();
   }, [searchIds]);
 
+
   const fetchBreeds = async (e) => {
     const response = await api.get(apiURL + "/dogs/breeds", {
       withCredentials: true,
       headers: {
         "Content-Type": "application/json",
       },
-    });
-    const data = await response.data;
-    setBreedList(data);
+    })
+    .then(function (response) {
+      console.log(response);
+      const data = response.data;
+      setBreedList(data);
+    })
+    // if login times-out, user will be redirected to login page
+    .catch(function (error) {
+      if (error.response.status === 401) {
+        window.location.assign('/')
+      }
+    })
+    
   };
 
   const fetchDogs = async (e) => {
@@ -143,7 +154,7 @@ const Search = () => {
             value={minAge}
             onChange={(e) => setMinAge(e.target.value)}
           >
-          <option selected>Choose...
+          <option selected>Optional
           </option>
           {options.map((option, i) => (
             <option key={i}>{option}</option>
@@ -160,7 +171,7 @@ const Search = () => {
             value={maxAge}
             onChange={(e) => setMaxAge(e.target.value)}
           >
-          <option selected>Choose...
+          <option selected>Optional
           </option>
           {options.map((option, i) => (
             <option key={i}>{option}</option>
@@ -173,9 +184,9 @@ const Search = () => {
       </form>
       <div>
         <button
-          className="btn btn-secondary m-3"
+          className="btn btn-secondary m-3 matchBtn"
           type="click"
-          onClick={(e) => fetchMatch()}
+          onClick={(e) => favorites.size > 0 ? fetchMatch() : alert('Select favorites to find a match')}
         >
           Find Match
         </button>
@@ -194,6 +205,7 @@ const Search = () => {
           />
         ))}
       </div>
+      {searchIds == '' ? <h3 className="text-center">Search to see results</h3> : 
       <div className="text-center">
         <button
           className="btn btn-secondary m-3"
@@ -209,7 +221,8 @@ const Search = () => {
         >
           Next Page
         </button>
-      </div>
+      </div> }
+      
     </div>
   );
 };
