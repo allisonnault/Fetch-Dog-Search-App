@@ -21,7 +21,7 @@ const Logout = () => {
                     "Content-Type": "application/json"
                 },
         });
-        window.location.assign("/");
+        window.location.href = "/";
     }
 };
 
