@@ -13,10 +13,10 @@ function App() {
     <Nav />
     <body>
     <Routes>
-      <Route exact path='/search' Component={Search}/>
-      <Route exact path='/match/:id' Component={Match} />
-      <Route exact path='/' Component={Login}/>
-      <Route exact path='/logout' Component={Logout}/>
+      <Route exact path='/Fetch-Dog-Search-App/search' Component={Search}/>
+      <Route exact path='/Fetch-Dog-Search-App/match/:id' Component={Match} />
+      <Route exact path='/Fetch-Dog-Search-App/' Component={Login}/>
+      <Route exact path='/Fetch-Dog-Search-App/logout' Component={Logout}/>
     </Routes>
     </body>
 </BrowserRouter>
