@@ -5,7 +5,7 @@ const Nav = () => {
   return (
     <header className="header row align-items-center">
       <div className="col-5">
-        <h1>Fetch Dog Search</h1>
+        <h1 style={{paddingLeft: '5px'}}>Fetch Dog Search</h1>
       </div>
       <div className="col">
         <ul className="nav justify-content-end">

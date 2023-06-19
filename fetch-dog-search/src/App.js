@@ -11,12 +11,14 @@ function App() {
   return (
 <BrowserRouter>
     <Nav />
+    <body>
     <Routes>
       <Route exact path='/search' Component={Search}/>
       <Route exact path='/match/:id' Component={Match} />
       <Route exact path='/' Component={Login}/>
       <Route exact path='/logout' Component={Logout}/>
     </Routes>
+    </body>
 </BrowserRouter>
   );
 }

@@ -27,7 +27,7 @@ const Login = (props) => {
     };
 
     return (
-        <div className='container col-4 card shadow'>
+        <div className='container col-4 card shadow' style={{marginTop: '20px'}}>
         <div className='p-3'>
             <h3 className='text-center mb-3'>Login</h3>
            <form onSubmit={handleSubmit}>
@@ -48,7 +48,7 @@ const Login = (props) => {
                 type='email'
                 name='email'
             />
-            <button className='btn btn-primary login-btn' type='submit'>Login</button>
+            <button className='btn' type='submit'>Login</button>
             </div>
            </form>
         </div>

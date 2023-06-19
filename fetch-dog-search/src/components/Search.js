@@ -38,7 +38,6 @@ const Search = () => {
     .then(function (response) {
       setBreedList(response.data);
     })
-    // if login times-out, user will be redirected to login page
     .catch(function (error) {
       if (error.response.status === 401) {
         window.location.assign('/')
@@ -124,7 +123,7 @@ const Search = () => {
   };
 
   return (
-    <div>
+    <div className="main">
       <form onSubmit={handleSearch} className="m-3">
         <div className="input-group mb-3">
           <label className="input-group-text" for="inputGroupSelect01">
@@ -176,13 +175,13 @@ const Search = () => {
           ))}
           </select>
         </div>
-        <button className="btn btn-primary" type="submit">
+        <button className="btn" type="submit">
           Search Dogs
         </button>
       </form>
       <div>
         <button
-          className="btn btn-secondary m-3 matchBtn"
+          className="btn m-3 matchBtn"
           type="click"
           onClick={(e) => favorites.size > 0 ? fetchMatch() : alert('Select favorites to find a match')}
         >

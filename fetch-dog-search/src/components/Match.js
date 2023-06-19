@@ -32,7 +32,7 @@ const Match = () => {
    return (
     <div>
     <div className="container justify-content-center">
-        <h3>Your Match:</h3>
+        <h3 style={{marginTop: '20px'}}>Your Match:</h3>
         {result.length ? <Card
             age={result[0].age} 
             breed={result[0].breed} 

@@ -1,8 +1,50 @@
-.dogCard {
-    width: 18rem;
+:root {
+    --background: #F3F3F5;
+    --lightGreen: #CED4D5;
+    --midGreen: #9EBFC2;
+    --darkGreen: #5F8588;
+    --greenAccent: #476264;
 }
 
-.card-img-top {
-    height: 250px;
-    object-fit: cover;
+h1 {
+    font-family: 'Archivo Black', sans-serif;
 }
+
+h2, h3, h4 {
+    font-family: 'Poppins', sans-serif;
+}
+
+.nav-link {
+    color: black !important;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+.header {
+    background-color: var(--midGreen);
+}
+
+body {
+    background-color: var(--background);
+}
+
+.input-group-text {
+    background-color: rgb(206, 226, 227);
+}
+
+.btn {
+    background-color: var(--darkGreen);
+    color: white;
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--greenAccent);
+}
+
+.btn:hover {
+    background-color: var(--midGreen);
+}
+ 
