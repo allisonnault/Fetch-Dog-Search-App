@@ -21,7 +21,7 @@ const Logout = () => {
                     "Content-Type": "application/json"
                 },
         });
-        window.location.assign("/Fetch-Dog-Search-App/");
+        window.location.assign("/");
     }
 };
 

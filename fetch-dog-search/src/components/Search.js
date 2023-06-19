@@ -40,7 +40,7 @@ const Search = () => {
     })
     .catch(function (error) {
       if (error.response.status === 401) {
-        window.location.assign('/Fetch-Dog-Search-App/')
+        window.location.assign('/')
       }
     })
     

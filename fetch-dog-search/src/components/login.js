@@ -23,7 +23,7 @@ const Login = (props) => {
             },
         });
         console.log(response);
-       window.location.assign("/Fetch-Dog-Search-App/search");
+       window.location.assign("/search");
     };
 
     return (
