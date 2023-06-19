@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/fetch-dog-search-app/static/css/main.55d81d31.css",
-    "main.js": "/fetch-dog-search-app/static/js/main.9b5feadf.js",
-    "index.html": "/fetch-dog-search-app/index.html",
-    "main.55d81d31.css.map": "/fetch-dog-search-app/static/css/main.55d81d31.css.map",
-    "main.9b5feadf.js.map": "/fetch-dog-search-app/static/js/main.9b5feadf.js.map"
+    "main.css": "/Fetch-Dog-Search-App/static/css/main.55d81d31.css",
+    "main.js": "/Fetch-Dog-Search-App/static/js/main.9b5feadf.js",
+    "index.html": "/Fetch-Dog-Search-App/index.html",
+    "main.55d81d31.css.map": "/Fetch-Dog-Search-App/static/css/main.55d81d31.css.map",
+    "main.9b5feadf.js.map": "/Fetch-Dog-Search-App/static/js/main.9b5feadf.js.map"
   },
   "entrypoints": [
     "static/css/main.55d81d31.css",
