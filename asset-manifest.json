@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/fetch-dog-search/static/css/main.55d81d31.css",
+    "main.js": "/fetch-dog-search/static/js/main.f132cc48.js",
+    "index.html": "/fetch-dog-search/index.html",
+    "main.55d81d31.css.map": "/fetch-dog-search/static/css/main.55d81d31.css.map",
+    "main.f132cc48.js.map": "/fetch-dog-search/static/js/main.f132cc48.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.55d81d31.css",
+    "static/js/main.f132cc48.js"
+  ]
+}
