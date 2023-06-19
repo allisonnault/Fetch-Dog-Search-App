@@ -120,7 +120,7 @@ const Search = () => {
     });
     const data = await response.data.match;
 
-    window.location.assign(`/match/${data}`);
+    window.location.href = `#/match/${data}`;
   };
 
   return (

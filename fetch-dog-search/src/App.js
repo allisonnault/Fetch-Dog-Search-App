@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import Nav from './components/Nav';
 import Search from './components/Search';
 import Match from './components/Match';
@@ -9,7 +9,7 @@ import './App.css';
 
 function App() {
   return (
-<BrowserRouter>
+<HashRouter basename='/'>
     <Nav />
     <body>
     <Routes>
@@ -19,7 +19,7 @@ function App() {
       <Route exact path='/logout' Component={Logout}/>
     </Routes>
     </body>
-</BrowserRouter>
+</HashRouter>
   );
 }
 
