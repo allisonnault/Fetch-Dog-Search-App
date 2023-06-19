@@ -10,14 +10,14 @@ const Nav = () => {
       <div className="col">
         <ul className="nav justify-content-end">
           <li className="nav-item p-3">
-            <NavLink to="/search" className="nav-link">
+            <a href="#/search" className="nav-link">
               Search
-            </NavLink>
+            </a>
           </li>
           <li className="nav-item p-3">
-            <NavLink to="/logout" className="nav-link">
+            <a href="#/logout" className="nav-link">
               Logout
-            </NavLink>
+            </a>
           </li>
         </ul>
       </div>
