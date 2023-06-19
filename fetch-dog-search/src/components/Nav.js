@@ -19,11 +19,6 @@ const Nav = () => {
               Logout
             </NavLink>
           </li>
-          <li className="nav-item p-3">
-            <NavLink to="/" className="nav-link">
-              Login
-            </NavLink>
-          </li>
         </ul>
       </div>
     </header>
