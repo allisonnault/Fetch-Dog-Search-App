@@ -14,11 +14,11 @@ const Card = (props) => {
     }
 
     return (
-        <div style={{width: '18rem'}} className="card m-3 shadow">
+        <div style={isSearch ? {width: '18rem'} : {width: '31rem'}} className="card m-3 shadow">
             <img src={props.img} 
                 alt={props.name} 
                 className="card-img-top" 
-                style={{height: '250px', objectFit: 'cover'}}/>
+                style={isSearch ? {height: '15rem', objectFit: 'cover'} : {height: '25rem', objectFit: 'cover'}}/>
             <div className="card-body text-center">
                 <h4 className="card-title">{props.name}</h4>
                     <p>Breed: {props.breed}</p>
