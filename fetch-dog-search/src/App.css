@@ -1,9 +1,9 @@
 :root {
     --background: #F3F3F5;
-    --lightGreen: #CED4D5;
+    --lightGreen: #CEE2E3;
     --midGreen: #9EBFC2;
-    --darkGreen: #5F8588;
-    --greenAccent: #476264;
+    --darkGreen: #456e71;
+    --greenAccent: #659b9f;
 }
 
 h1 {
@@ -33,18 +33,15 @@ body {
 }
 
 .input-group-text {
-    background-color: rgb(206, 226, 227);
+    background-color: var(--lightGreen);
 }
 
 .btn {
     background-color: var(--darkGreen);
     color: white;
-    border-width: 1px;
-    border-style: solid;
-    border-color: var(--greenAccent);
 }
 
 .btn:hover {
-    background-color: var(--midGreen);
+    background-color: var(--greenAccent);
 }
  

@@ -9,7 +9,7 @@ import './App.css';
 
 function App() {
   return (
-<HashRouter basename='/'>
+<HashRouter>
     <Nav />
     <body>
     <Routes>
